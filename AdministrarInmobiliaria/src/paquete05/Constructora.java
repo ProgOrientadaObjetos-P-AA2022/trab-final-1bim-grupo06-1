@@ -7,13 +7,16 @@ package paquete05;
 
 /**
  *
- * @author reroes
+ * @author maisc
  */
-public class Constructora {
+
+import java.io.Serializable;
+
+public class Constructora implements Serializable {
     private String nomCons;
     private String idEmp;
     
-    //Constructores...
+    //Constructor
     public Constructora(String nom, String id){
         nomCons = nom;
         idEmp = id;
@@ -38,8 +41,11 @@ public class Constructora {
     //Metodo toString
     @Override
     public String toString() {
-        String c = "CONSTRUCTORA...";
+        String c = String.format("CONSTRUCTORA\nNombre de la constructora: %s\n"
+                + "Identificacion de la empresa: %s\n"
+                ,obtenerNomCons()
+                ,obtenerIdEmp()
+        );
         return c;
     }
-    
 }

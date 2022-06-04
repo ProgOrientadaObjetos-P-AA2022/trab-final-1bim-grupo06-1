@@ -7,9 +7,12 @@ package paquete02;
 
 /**
  *
- * @author reroes
+ * @author maisc
  */
-public class Propietario {
+
+import java.io.Serializable;
+
+public class Propietario implements Serializable{
     private String nombre;
     private String apellido;
     private String identificacion;
@@ -46,7 +49,12 @@ public class Propietario {
     //Metodo toString
     @Override
     public String toString(){
-        String c = "PROPIETARIO....";
+        String c = String.format("PROPIETARIO\nNombre: %s\nApellido: %s\n"
+                + "Identificacion: %s\n"
+                ,obtenerNombre()
+                ,obtenerApellido()
+                ,obtenerIdentificacion()
+                );
         return c;
     }
 }

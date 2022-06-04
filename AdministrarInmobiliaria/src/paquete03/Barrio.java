@@ -7,9 +7,12 @@ package paquete03;
 
 /**
  *
- * @author reroes
+ * @author maisc
  */
-public class Barrio {
+
+import java.io.Serializable;
+
+public class Barrio implements Serializable{
     private String nomBarrio;
     private String refe;
     
@@ -38,7 +41,11 @@ public class Barrio {
     //Metodo toString
     @Override
     public String toString() {
-        String c = "BARRIO.....";
+        String c = String.format("BARRIO\nNombre del barrio: %s\n"
+                + "Referencia: %s\n"
+                ,obtenerNomBarrio()
+                ,obtenerRefe()
+        );
         return c;
     }
 }

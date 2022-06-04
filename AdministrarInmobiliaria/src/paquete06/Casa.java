@@ -5,16 +5,18 @@
  */
 package paquete06;
 
+/**
+ *
+ * @author maisc
+ */
+
+import java.io.Serializable;
 import paquete02.Propietario;
 import paquete03.Barrio;
 import paquete04.Ciudad;
 import paquete05.Constructora;
 
-/**
- *
- * @author reroes
- */
-public class Casa {
+public class Casa implements Serializable{
     private Propietario prop;//Instanciamos una variable de tipo propietario
     private double precioXCuadra;
     private double metrosCua;
@@ -38,8 +40,7 @@ public class Casa {
         metrosCua = c;
     }
     public void calcularCostoTotal(){
-        //Falta mas...
-        costoTotal = precioXCuadra * metrosCua;
+        costoTotal =  metrosCua *precioXCuadra;
     }
     public void establecerBarr(Barrio c){
         barr = c;

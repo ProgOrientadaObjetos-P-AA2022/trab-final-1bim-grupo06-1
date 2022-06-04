@@ -5,16 +5,18 @@
  */
 package paquete06;
 
+/**
+ *
+ * @author maisc
+ */
+
+import java.io.Serializable;
 import paquete02.Propietario;
 import paquete03.Barrio;
 import paquete04.Ciudad;
 import paquete05.Constructora;
 
-/**
- *
- * @author reroes
- */
-public class Departamento {
+public class Departamento implements Serializable{
     private Propietario prop2;//Instanciamos una variable de tipo propietario
     private double precioXCuadra2;
     private double metrosCua2;

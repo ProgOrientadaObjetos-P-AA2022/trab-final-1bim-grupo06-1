@@ -9,11 +9,14 @@ package paquete04;
  *
  * @author reroes
  */
-public class Ciudad {
+
+import java.io.Serializable;
+
+public class Ciudad implements Serializable{
     private String nombCiudad;
     private String nombProvincia;
     
-    //Constructores...
+    //Constructor
     public Ciudad(String c, String p){
         nombCiudad = c;
         nombProvincia = p;
@@ -38,7 +41,11 @@ public class Ciudad {
     //Metodo toString
     @Override
     public String toString() {
-        String c = "CIUDAD...";
+        String c = String.format("CIUDAD\nNombre de la ciudad: %s\n"
+                + "Nombre de la provincia: %s\n"
+                ,obtenerNombCiudad()
+                ,obtenerProvincia()
+        );
         return c;
     }
 }
