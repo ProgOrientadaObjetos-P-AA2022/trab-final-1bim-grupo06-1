@@ -8,8 +8,17 @@ package paquete01;
 import java.util.Scanner;
 
 import paquedeGuardadoCons.EjecutorConstructora;
+import paquedeGuardadoCons.BusquedaConst;
+
+import paqueteGuardadoBarrio.BusquedaBarrio;
 import paqueteGuardadoBarrio.EjecutorBarrio;
+
+import paqueteGuardadoCity.BusquedaCity;
 import paqueteGuardadoCity.EjecutorCity;
+
+import paqueteGuardadoDepartamento.EjecutorDepartamento;
+
+import paqueteGuardadoProp.BusquedaProp;
 import paqueteGuardadoProp.EjecutorProp;
 /**
  *
@@ -17,15 +26,25 @@ import paqueteGuardadoProp.EjecutorProp;
  */
 public class EjecutorPrincipal {
     
+    //Variables de tipo estaticas para recorrer el menu
     static Scanner sc = new Scanner(System.in);
     static int op = -1;
+    static int opc;
     
     public static void main(String[] args) {
  
+        //Ejecutores de su propia clase.
         EjecutorProp objProp = new  EjecutorProp();
         EjecutorCity objCity = new EjecutorCity();
         EjecutorBarrio objBarrio = new EjecutorBarrio();
         EjecutorConstructora objCons = new EjecutorConstructora();
+        EjecutorDepartamento objDeparta = new EjecutorDepartamento();
+        
+        //Buscadores de su propia clase
+        BusquedaProp objPropBus = new BusquedaProp();
+        BusquedaCity objCityBus = new BusquedaCity();
+        BusquedaBarrio objBarrioBus = new BusquedaBarrio();
+        BusquedaConst objConsBus = new BusquedaConst();
         
         while (op != 0){
             try {
@@ -42,24 +61,98 @@ public class EjecutorPrincipal {
                 sc.nextLine();
                 System.out.println("------------------------------");
                 switch(op){
-                    case 1:
-                        objProp.main(args);
+                    case 1:      
+                        System.out.println("******************");
+                        System.out.println("nuevo propietario     [1]");
+                        System.out.println("Buscar propietario    [2]");
+                        System.out.println("Atras                 [0]");
+                        opc = sc.nextInt();
+                        sc.nextLine();
+                        switch (opc) {
+                            case 1:
+                                objProp.main(args);
+                                break;
+                            case 2:
+                                objPropBus.main(args);
+                                break;
+                            case 0:
+                                break;
+                        }
                         break;
                     case 2:
-                        objCity.main(args);
+                        System.out.println("******MENU CIUDAD******");
+                        System.out.println("Nueva Ciudad         [1]");
+                        System.out.println("Buscar Ciudad        [2]");
+                        System.out.println("Atras                [0]");
+                        opc = sc.nextInt();
+                        sc.nextLine();
+                        switch (opc) {
+                            case 1:
+                                objCity.main(args);
+                                break;
+                            case 2:
+                                objCityBus.main(args);
+                                break;
+                            case 0:
+                                break;
+                        }
                         break;
                     case 3:
-                        objBarrio.main(args);
+                        System.out.println("******MENU BARRIO******");
+                        System.out.println("Nueva Barrio         [1]");
+                        System.out.println("Buscar Barrio        [2]");
+                        System.out.println("Atras                [0]");
+                        opc = sc.nextInt();
+                        sc.nextLine();
+                        switch (opc) {
+                            case 1:
+                                objBarrio.main(args);
+                                break;
+                            case 2:
+                                objBarrioBus.main(args);
+                                break;
+                            case 0:
+                                break;
+                        }
                         break;
                     case 4:
-                        objCons.main(args);
+                        System.out.println("******MENU CONSTRUCTORA******");
+                        System.out.println("Nueva Constructora         [1]");
+                        System.out.println("Buscar Constructora        [2]");
+                        System.out.println("Atras                      [0]");
+                        opc = sc.nextInt();
+                        sc.nextLine();
+                        switch (opc) {
+                            case 1:
+                                objCons.main(args);
+                                break;
+                            case 2:
+                                objConsBus.main(args);
+                                break;
+                            case 0:
+                                break;
+                        }
                         break;
-//                    case 5:
-//                        
-//                        break;
-//                    case 6: 
-//                        
-//                        break;
+                  case 5:
+                        System.out.println("******MENU CASA******");
+                        break;
+                  case 6: 
+                        System.out.println("******MENU DEPARTAMENTO******");
+                        System.out.println("Nuevo Departamento      [1]");
+                        System.out.println("Buscar Departamento     [2]");
+                        opc = sc.nextInt();
+                        sc.nextLine();
+                        switch (opc) {
+                            case 1:
+                                objDeparta.main(args);                       
+                                break;
+                            case 2:
+                                objDepartaBus.main(args);                       
+                                break;
+                            case 0:
+                                break;
+                        }
+                        break;
                 }
                 System.out.println("");
             } catch (Exception e) {
@@ -67,7 +160,4 @@ public class EjecutorPrincipal {
             }
         }
     }
-    
-    
-    
 }

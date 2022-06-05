@@ -14,25 +14,12 @@ import paquete05.Constructora;
  */
 public class EjecutorConstructora {
     public static void main(String[] args) {
-
-        String nombreArchivoCo = "data/constructora.data";
         
         Scanner sc = new Scanner(System.in);
-
-//        Constructora co1 = new Constructora("Palillos fuertes", "PF-035");
-//        Constructora co2 = new Constructora("Palillos fuertes", "PF-035");
-//        Constructora co3 = new Constructora("Palillos fuertes", "PF-035");
-
-        Escritura e = new Escritura(nombreArchivoCo);
         
-//        e.establecerRegistroConstructora(co1);
-//        e.establecerSalida();
-//        
-//        e.establecerRegistroConstructora(co2);
-//        e.establecerSalida();
-//        
-//        e.establecerRegistroConstructora(co3);
-//        e.establecerSalida();
+        String nombreArchivoCo = "data/constructora.data";
+        
+        EscrituraConst e = new EscrituraConst(nombreArchivoCo);
 
         String nomC;
         String idE;
@@ -50,7 +37,7 @@ public class EjecutorConstructora {
         
         e.cerrarArchivo();
         
-        Lectura lectura = new Lectura(nombreArchivoCo);
+        LecturaConst lectura = new LecturaConst(nombreArchivoCo);
         lectura.establecerConstruct();
         
         System.out.println(lectura);

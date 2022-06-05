@@ -2,34 +2,35 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package paquedeGuardadoCons;
+package paqueteGuardadoCasa;
 
 /**
  *
  * @author maisc
  */
 
+import paqueteGuardadoBarrio.*;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import paquete05.Constructora;
+import paquete03.Barrio;
 
-public class Escritura {
+public class EscrituraCasa {
 
     private String noArchivo;
     private ObjectOutputStream salida; 
-    private Constructora registroConstructora;
-    private ArrayList<Constructora> listaConstructora;
+    private Barrio registroBarrio;
+    private ArrayList<Barrio> listaBarrio;
 
-    public Escritura(String c) {
+    public EscrituraCasa(String c) {
         noArchivo = c;
-        establecerListaConstructora(); 
+        establecerListaBarrio(); 
         try{
             salida = new ObjectOutputStream(new FileOutputStream(noArchivo));
-            if (obtenerListaConstructora().size() > 0) {
-                for (int i = 0; i < obtenerListaConstructora().size(); i++) {
-                    establecerRegistroConstructora(obtenerListaConstructora().
+            if (obtenerListaBarrio().size() > 0) {
+                for (int i = 0; i < obtenerListaBarrio().size(); i++) {
+                    establecerRegistroBarrio(obtenerListaBarrio().
                             get(i));
                     establecerSalida();
                 }
@@ -42,28 +43,28 @@ public class Escritura {
     public void establecerNoArchivo(String c){
         noArchivo = c;
     }
-    public void establecerRegistroConstructora(Constructora c) {
-        registroConstructora = c;
+    public void establecerRegistroBarrio(Barrio c) {
+        registroBarrio = c;
     }
     public void establecerSalida() {
         try {
-            salida.writeObject(registroConstructora);
+            salida.writeObject(registroBarrio);
         } catch (IOException ex) {
             System.err.println("Error al escribir en el archivo.");
         }
     }
-    public void establecerListaConstructora() {
-        Lectura le =  new Lectura(obtenerNoArchivo());
-        le.establecerConstruct();
-        listaConstructora = le.obtenerConstruct();
+    public void establecerListaBarrio() {
+        LecturaCasa le =  new LecturaCasa(obtenerNoArchivo());
+        le.establecerBarrio();
+        listaBarrio = le.obtenerBarrio();
     }
 
     
     public String obtenerNoArchivo(){
         return noArchivo;
     }
-    public ArrayList<Constructora> obtenerListaConstructora() {
-        return listaConstructora;
+    public ArrayList<Barrio> obtenerListaBarrio() {
+        return listaBarrio;
     }
     public ObjectOutputStream obtenerSalida(){
         return salida;

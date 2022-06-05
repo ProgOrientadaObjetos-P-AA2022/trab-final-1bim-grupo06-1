@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package paqueteGuardadoBarrio;
+package paqueteGuardadoDepartamento;
 
 /**
  *
@@ -13,23 +13,23 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import paquete03.Barrio;
+import paquete06.Departamento;
 
-public class Escritura {
+public class EscrituraDepa {
 
     private String noArchivo;
     private ObjectOutputStream salida; 
-    private Barrio registroBarrio;
-    private ArrayList<Barrio> listaBarrio;
+    private Departamento registroDepartamento;
+    private ArrayList<Departamento> listaDepartamento;
 
-    public Escritura(String c) {
+    public EscrituraDepa(String c) {
         noArchivo = c;
-        establecerListaBarrio(); 
+        establecerListaDepartamento(); 
         try{
             salida = new ObjectOutputStream(new FileOutputStream(noArchivo));
-            if (obtenerListaBarrio().size() > 0) {
-                for (int i = 0; i < obtenerListaBarrio().size(); i++) {
-                    establecerRegistroBarrio(obtenerListaBarrio().
+            if (obtenerListaDepartamento().size() > 0) {
+                for (int i = 0; i < obtenerListaDepartamento().size(); i++) {
+                    establecerRegistroDepartamento(obtenerListaDepartamento().
                             get(i));
                     establecerSalida();
                 }
@@ -42,28 +42,28 @@ public class Escritura {
     public void establecerNoArchivo(String c){
         noArchivo = c;
     }
-    public void establecerRegistroBarrio(Barrio c) {
-        registroBarrio = c;
+    public void establecerRegistroDepartamento(Departamento c) {
+        registroDepartamento = c;
     }
     public void establecerSalida() {
         try {
-            salida.writeObject(registroBarrio);
+            salida.writeObject(registroDepartamento);
         } catch (IOException ex) {
             System.err.println("Error al escribir en el archivo.");
         }
     }
-    public void establecerListaBarrio() {
-        Lectura le =  new Lectura(obtenerNoArchivo());
-        le.establecerBarrio();
-        listaBarrio = le.obtenerBarrio();
+    public void establecerListaDepartamento() {
+        LecturaDepa le =  new LecturaDepa(obtenerNoArchivo());
+        le.establecerDepar();
+        listaDepartamento = le.obtenerDepartamento();
     }
 
     
     public String obtenerNoArchivo(){
         return noArchivo;
     }
-    public ArrayList<Barrio> obtenerListaBarrio() {
-        return listaBarrio;
+    public ArrayList<Departamento> obtenerListaDepartamento() {
+        return listaDepartamento;
     }
     public ObjectOutputStream obtenerSalida(){
         return salida;

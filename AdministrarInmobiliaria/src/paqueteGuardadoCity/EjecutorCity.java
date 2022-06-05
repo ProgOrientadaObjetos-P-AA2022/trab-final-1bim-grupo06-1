@@ -13,25 +13,12 @@ import paquete04.Ciudad;
  */
 public class EjecutorCity {
     public static void main(String[] args) {
-
-        String nombreArchivoCi = "data/ciudad.data";
         
         Scanner sc = new Scanner(System.in);
         
-//        Ciudad ci1 = new Ciudad("Ciudad Loja","Provincia Loja");
-//        Ciudad ci2 = new Ciudad("Ciudad Cuenca","Provincia nose");
-//        Ciudad ci3 = new Ciudad("Ciudad QUITO","Provincia NOSE SEEEE");
+        String nombreArchivoCi = "data/ciudad.data";
         
-        Escritura e = new Escritura(nombreArchivoCi);
-        
-//        e.establecerRegistroCity(ci1);
-//        e.establecerSalida();
-//        
-//        e.establecerRegistroCity(ci2);
-//        e.establecerSalida();
-//        
-//        e.establecerRegistroCity(ci3);
-//        e.establecerSalida();
+        EscrituraCity e = new EscrituraCity(nombreArchivoCi);
         
         String nomC;
         String nomP;
@@ -49,12 +36,9 @@ public class EjecutorCity {
         
         e.cerrarArchivo();
         
-        Lectura lectura = new Lectura(nombreArchivoCi);
+        LecturaCity lectura = new LecturaCity(nombreArchivoCi);
         lectura.establecerCity();
         
         System.out.println(lectura);
-        
-       
-        
     }
 }

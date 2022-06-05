@@ -14,25 +14,12 @@ import paquete03.Barrio;
  */
 public class EjecutorBarrio {
     public static void main(String[] args) {
-
-        String nombreArchivoB = "data/barrio.data";
         
         Scanner sc = new Scanner(System.in);
         
-//        Barrio b1 = new Barrio("San Luis","Pueblillo");
-//        Barrio b2 = new Barrio("Tevaida","Ferrisariato");
-//        Barrio b3 = new Barrio("Electrisista","Matriculacion vehicular");
+        String nombreArchivoB = "data/barrio.data";
         
-        Escritura e = new Escritura(nombreArchivoB);
-        
-//        e.establecerRegistroBarrio(b1);
-//        e.establecerSalida();
-//        
-//        e.establecerRegistroBarrio(b2);
-//        e.establecerSalida();
-//        
-//        e.establecerRegistroBarrio(b3);
-//        e.establecerSalida();
+        EscrituraBarrio e = new EscrituraBarrio(nombreArchivoB);
         
         String nom;
         String ref;
@@ -50,11 +37,9 @@ public class EjecutorBarrio {
         
         e.cerrarArchivo();
         
-        Lectura lectura = new Lectura(nombreArchivoB);
+        LecturaBarrio lectura = new LecturaBarrio(nombreArchivoB);
         lectura.establecerBarrio();
         
         System.out.println(lectura);
-       
-        
     }
 }

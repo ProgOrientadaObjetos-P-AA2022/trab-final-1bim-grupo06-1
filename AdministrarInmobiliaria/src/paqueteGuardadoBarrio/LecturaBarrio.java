@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package paquedeGuardadoCons;
+package paqueteGuardadoBarrio;
 
 /**
  *
@@ -15,18 +15,18 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
-import paquete05.Constructora;
+import paquete03.Barrio;
 
-public class Lectura {
+public class LecturaBarrio {
 
     private ObjectInputStream entrada;
-    private ArrayList<Constructora> construct;
+    private ArrayList<Barrio> barrio;
     private String noArchivo;
     private String ident;
-    private Constructora constructoraBu;
+    private Barrio barrioBusqueda;
 
     //Constructor
-    public Lectura(String n) {
+    public LecturaBarrio(String n) {
         noArchivo = n;
         File f = new File(obtenerNoArchivo());
         if (f.exists()) {
@@ -44,14 +44,14 @@ public class Lectura {
     public void establecerNoArchivo(String n) {
         noArchivo = n;
     }
-    public void establecerConstruct() {
-        construct = new ArrayList<>();
+    public void establecerBarrio() {
+        barrio = new ArrayList<>();
         File f = new File(obtenerNoArchivo());
         if (f.exists()) {
             while (true) {
                 try {
-                    Constructora reg = (Constructora) entrada.readObject();
-                    construct.add(reg);
+                    Barrio reg = (Barrio) entrada.readObject();
+                    barrio.add(reg);
                 } catch (EOFException endOfFileException) {
                     return;
                 } catch (IOException ex) {
@@ -67,14 +67,14 @@ public class Lectura {
     public void establecerIdent(String n) {
         ident = n;
     }
-    public void establecerConstructoraBu() {
+    public void establecerBarrioBusqueda() {
         File f = new File(obtenerNoArchivo());
         if (f.exists()) {
             while (true) {
                 try {
-                    Constructora reg = (Constructora) entrada.readObject();
-                    if(reg.obtenerIdEmp().equals(ident)){
-                        constructoraBu = reg;
+                    Barrio reg = (Barrio) entrada.readObject();
+                    if(reg.obtenerNomBarrio().equals(ident)){
+                        barrioBusqueda = reg;
                         break;
                     }
                 } catch (EOFException endOfFileException) {
@@ -91,8 +91,8 @@ public class Lectura {
     }
     
     //Los obtener de los atributos
-    public ArrayList<Constructora> obtenerConstruct() {
-        return construct;
+    public ArrayList<Barrio> obtenerBarrio() {
+        return barrio;
     }
     public String obtenerNoArchivo() {
         return noArchivo;
@@ -100,21 +100,21 @@ public class Lectura {
     public String obtenerIdent() {
         return ident;
     }
-    public Constructora obtenerConstructoraBu() {
-        return constructoraBu;
+    public Barrio obtenerBarrioBusqueda() {
+        return barrioBusqueda;
     }
 
     //Metodo toString
     @Override
     public String toString() {
-        String ca = "Lista de Constructores/as\n";
-        for (int i = 0; i < obtenerConstruct().size(); i++) {
-            Constructora c = obtenerConstruct().get(i);
+        String ca = "Lista de Barrios\n";
+        for (int i = 0; i < obtenerBarrio().size(); i++) {
+            Barrio c = obtenerBarrio().get(i);
             ca = String.format("%s(%d) %s - %s\n"
                     ,ca
                     ,i + 1
-                    ,c.obtenerNomCons()
-                    ,c.obtenerIdEmp()
+                    ,c.obtenerNomBarrio()
+                    ,c.obtenerRefe()
             );
         }
         return ca;
