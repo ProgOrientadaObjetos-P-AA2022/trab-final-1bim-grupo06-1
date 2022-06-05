@@ -107,7 +107,7 @@ public class Lectura {
     //Metodo toString
     @Override
     public String toString() {
-        String ca = "Lista de Profesores\n";
+        String ca = "Lista de Ciudades\n";
         for (int i = 0; i < obtenerCity().size(); i++) {
             Ciudad c = obtenerCity().get(i);
             ca = String.format("%s(%d) %s - %s\n"

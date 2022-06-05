@@ -17,7 +17,7 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import paquete02.Propietario;
 
-public class Lectura {
+public class LecturaProp {
 
     private ObjectInputStream entrada;
     private ArrayList<Propietario> prop;
@@ -26,7 +26,7 @@ public class Lectura {
     private Propietario propBusqueda;
 
     //Constructor
-    public Lectura(String n) {
+    public LecturaProp(String n) {
         noArchivo = n;
         File f = new File(obtenerNoArchivo());
         if (f.exists()) {
@@ -107,7 +107,7 @@ public class Lectura {
     //Metodo toString
     @Override
     public String toString() {
-        String c = "Lista de Profesores\n";
+        String c = "Lista de Propietarios\n";
         for (int i = 0; i < obtenerProp().size(); i++) {
             Propietario p = obtenerProp().get(i);
             c = String.format("%s(%d) %s - %s - %s\n"

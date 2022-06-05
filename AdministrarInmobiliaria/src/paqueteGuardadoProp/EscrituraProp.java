@@ -15,14 +15,14 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import paquete02.Propietario;
 
-public class Escritura {
+public class EscrituraProp {
 
     private String noArchivo;
     private ObjectOutputStream salida; 
     private Propietario registroProp;
     private ArrayList<Propietario> listaProp;
 
-    public Escritura(String c) {
+    public EscrituraProp(String c) {
         noArchivo = c;
         establecerListaProp(); 
         try{
@@ -53,7 +53,7 @@ public class Escritura {
         }
     }
     public void establecerListaProp() {
-        Lectura le =  new Lectura(obtenerNoArchivo());
+        LecturaProp le =  new LecturaProp(obtenerNoArchivo());
         le.establecerProp();
         listaProp = le.obtenerProp();
     }
