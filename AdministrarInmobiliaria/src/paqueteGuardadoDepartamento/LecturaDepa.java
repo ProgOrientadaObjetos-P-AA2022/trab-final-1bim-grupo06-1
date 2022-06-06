@@ -22,8 +22,6 @@ public class LecturaDepa {
     private ObjectInputStream entrada;
     private ArrayList<Departamento> depar;
     private String noArchivo;
-    private String ident;
-    private Departamento departamentoBusqueda;
 
     //Constructor
     public LecturaDepa(String n) {
@@ -64,47 +62,7 @@ public class LecturaDepa {
             }
         }
     }
-    public void establecerIdent(String n) {
-        ident = n;
-    }
-    public void establecerDepartamentoBusqueda() {
-        File f = new File(obtenerNoArchivo());
-        if (f.exists()) {
-            while (true) {
-                try {
-                    Departamento reg = (Departamento) entrada.readObject();
-                    //obtenemos la id del propietario
-                    if(reg.obtenerProp2().obtenerIdentificacion().equals(ident)){
-                        departamentoBusqueda = reg;
-                        break;
-                    }
-                    //obtenemos la id del propietario
-                    if(reg.obtenerBarr2().obtenerNomBarrio().equals(ident)){
-                        departamentoBusqueda = reg;
-                        break;
-                    }
-                    //obtenemos la id del propietario
-                    if(reg.obtenerCiud2().obtenerNombCiudad().equals(ident)){
-                        departamentoBusqueda = reg;
-                        break;
-                    }
-                    //obtenemos la id del propietario
-                    if(reg.obtenerConstruc2().obtenerIdEmp().equals(ident)){
-                        departamentoBusqueda = reg;
-                        break;
-                    }
-                } catch (EOFException endOfFileException) {
-                    return;
-                } catch (IOException ex) {
-                    System.err.println("Error al leer el archivo: " + ex);
-                } catch (ClassNotFoundException ex) {
-                    System.err.println("No se pudo crear el objeto: " + ex);
-                } catch (Exception ex) {
-                    System.err.println("No hay datos en el archivo: " + ex);
-                }
-            }
-        }
-    }
+    
     
     //Los obtener de los atributos
     public ArrayList<Departamento> obtenerDepartamento() {
@@ -112,12 +70,6 @@ public class LecturaDepa {
     }
     public String obtenerNoArchivo() {
         return noArchivo;
-    }
-    public String obtenerIdent() {
-        return ident;
-    }
-    public Departamento obtenerDepartamentoBusqueda() {
-        return departamentoBusqueda;
     }
 
     //Metodo toString
@@ -136,6 +88,7 @@ public class LecturaDepa {
                     + "Nombre del edificio: %s\n"
                     + "Ubicacion del departamento en edificio: %s\n"
                     + "Constructora.. \t[%s-%s]\n"
+                    + "Costo total: %.2f\n"
                     ,ca
                     ,i + 1
                     ,c.obtenerProp2().obtenerNombre()//
@@ -153,6 +106,7 @@ public class LecturaDepa {
                     ,c.obtenerUbiEdificio()
                     ,c.obtenerConstruc2().obtenerNomCons()//
                     ,c.obtenerCiud2().obtenerProvincia()
+                    ,c.obtenerCostoTotal2()
             );
         }
         return ca;

@@ -30,7 +30,7 @@ public class BusquedaBarrio {
         LecturaBarrio lectura = new LecturaBarrio(nombreArchivoB);
         
         lectura.establecerIdent(nomb);
-        lectura.establecerBarrio();
+        lectura.establecerBarrioBusqueda();
         barrio_buscar = lectura.obtenerBarrioBusqueda();
 
         if (barrio_buscar != null) {

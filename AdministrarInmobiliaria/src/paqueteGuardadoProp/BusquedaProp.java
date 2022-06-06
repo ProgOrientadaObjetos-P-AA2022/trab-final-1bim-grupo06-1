@@ -16,15 +16,13 @@ public class BusquedaProp {
     public static void main(String[] args) {
         String nombreArchivoP = "data/propietario.data";
         String ce;
+        Propietario pro_buscar;
         
         Scanner sc = new Scanner(System.in);
         
         System.out.println("BUSQUEDA DE PROPIETARIO");
         System.out.println("Ingrese la cedula del propietario: ");
         ce = sc.nextLine();
-        
-        
-        Propietario pro_buscar;
 
         LecturaProp lectura = new LecturaProp(nombreArchivoP);
         

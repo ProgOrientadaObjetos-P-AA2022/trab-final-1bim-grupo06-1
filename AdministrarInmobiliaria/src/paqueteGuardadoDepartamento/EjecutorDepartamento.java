@@ -6,20 +6,20 @@
 package paqueteGuardadoDepartamento;
 
 import java.util.Scanner;
-import paquedeGuardadoCons.EscrituraConst;
-import paquedeGuardadoCons.LecturaConst;
 
-import paquete02.Propietario;
-import paquete03.Barrio;
-import paquete04.Ciudad;
-import paquete05.Constructora;
+import paqueteGuardadoCons.BusquedaConst;
+import paqueteGuardadoCons.EjecutorConstructora;
+
 import paquete06.Departamento;
-import paqueteGuardadoBarrio.EscrituraBarrio;
-import paqueteGuardadoBarrio.LecturaBarrio;
-import paqueteGuardadoCity.EscrituraCity;
-import paqueteGuardadoCity.LecturaCity;
-import paqueteGuardadoProp.EscrituraProp;
-import paqueteGuardadoProp.LecturaProp;
+
+import paqueteGuardadoBarrio.BusquedaBarrio;
+import paqueteGuardadoBarrio.EjecutorBarrio;
+
+import paqueteGuardadoCity.BusquedaCity;
+import paqueteGuardadoCity.EjecutorCity;
+
+import paqueteGuardadoProp.BusquedaProp;
+import paqueteGuardadoProp.EjecutorProp;
 
 /**
  *
@@ -29,20 +29,23 @@ public class EjecutorDepartamento {
     public static void main(String[] args) {
 
         String nombreArchivoD = "data/departamento.data";
-        String nombreArchivoP = "data/propietario.data";
-        String nombreArchivoCi = "data/ciudad.data";
-        String nombreArchivoBa = "data/barrio.data";
-        String nombreArchivoCo = "data/constructora.data";
         
         Scanner sc = new Scanner(System.in);
         
-        EscrituraDepa e = new EscrituraDepa(nombreArchivoD);
-        EscrituraProp pro = new EscrituraProp(nombreArchivoP);
-        EscrituraBarrio ba = new EscrituraBarrio(nombreArchivoBa);
-        EscrituraCity city = new EscrituraCity(nombreArchivoCi);
-        EscrituraConst cons = new EscrituraConst(nombreArchivoCo);
+         //Ejecutores de su propia clase.
+        EjecutorProp objProp = new  EjecutorProp();
+        EjecutorCity objCity = new EjecutorCity();
+        EjecutorBarrio objBarrio = new EjecutorBarrio();
+        EjecutorConstructora objCons = new EjecutorConstructora();
         
-        LecturaProp lpro = new LecturaProp(nombreArchivoP);
+        //Buscadores de su propia clase
+        BusquedaProp objPropBus = new BusquedaProp();
+        BusquedaCity objCityBus = new BusquedaCity();
+        BusquedaBarrio objBarrioBus = new BusquedaBarrio();
+        BusquedaConst objConsBus = new BusquedaConst();
+        
+        EscrituraDepa es = new EscrituraDepa(nombreArchivoD);
+        LecturaDepa le = new LecturaDepa(nombreArchivoD);       
         
         double mXc;
         double num;
@@ -50,32 +53,26 @@ public class EjecutorDepartamento {
         String nomE;
         String ubi;
         
-        System.out.println("*****Ingrese los daltos del departamento*****");
+        int op;
         
-        //******************************************
-        //se podria poner un if...
-        
-        
-        
+        System.out.println("*****Ingrese los datos del departamento*****");
         System.out.println("PROPIETARIO");
-        //if (0 = 0){
-            String nom;
-            String ape;
-            String ced;
-            System.out.println("nombre: ");
-            nom = sc.nextLine();
-            System.out.println("apellido: ");
-            ape = sc.nextLine();
-            System.out.println("cedula: ");
-            ced = sc.nextLine();
-            Propietario p0 = new Propietario(nom,ape,ced);
-            pro.establecerRegistroProp(p0);
-            pro.establecerSalida();
-            pro.cerrarArchivo();    
-            lpro.establecerProp();
-        //}
-        //******************************************
         
+        System.out.println("Nuevo Propietario            [1]");
+        System.out.println("Busqueda de Propietario      [2]");
+        op = sc.nextInt();
+        sc.nextLine();
+        switch (op) {
+            case 1:
+                objProp.main(args);
+                break;
+            case 2:
+                objPropBus.main(args);
+                break;
+        }
+        
+        
+        System.out.println("Valores");
         //datos a dijitar
         System.out.println("Ingrese el precio por metro cuadrado: ");
         mXc = sc.nextDouble();
@@ -84,79 +81,68 @@ public class EjecutorDepartamento {
         System.out.println("Ingrese el valor alicuota mensual: ");
         ali = sc.nextDouble();
        
-        //******************************************
-        //se podria poner un if...
-            System.out.println("BARRIO");
-            //if (0 = 0){
-            String nomBarrio;
-            String ref;
-            System.out.println("*****Ingrese los datos de la barrio*****");
-            System.out.println("Nombre barrio: ");
-            nomBarrio = sc.nextLine();
-            System.out.println("Ingrese la referencia: ");
-            ref = sc.nextLine();
-            Barrio b = new Barrio(nom,ref);
-            ba.establecerRegistroBarrio(b);
-            ba.establecerSalida();
-            ba.cerrarArchivo();
-            LecturaBarrio lBar = new LecturaBarrio(nombreArchivoBa);
-            lBar.establecerBarrio();
-        //}
-        //******************************************
         
-        //******************************************
-        //se podria poner un if...
+        System.out.println("BARRIO");
+        System.out.println("Nuevo Barrio            [1]");
+        System.out.println("Busqueda del Barrio     [2]");
+        op = sc.nextInt();
+        sc.nextLine();
+        switch (op) {
+            case 1:
+                objBarrio.main(args);
+                break;
+            case 2:
+                objBarrioBus.main(args);
+                break;
+        }
+        
+            
         System.out.println("CIUDAD");
-        //if (0 = 0){
-            String nomC;
-            String nomP;
-            System.out.println("*****Ingrese los datos de la Ciudad*****");
-            System.out.println("Nombre ciudad: ");
-            nomC = sc.nextLine();
-            System.out.println("Nombre provincia: ");
-            nomP = sc.nextLine();
-            Ciudad c = new Ciudad(nomC, nomP);
-            city.establecerRegistroCity(c);
-            city.establecerSalida();
-            city.cerrarArchivo();
-            LecturaCity lectura = new LecturaCity(nombreArchivoCi);
-            lectura.establecerCity();
-        //}
-        //******************************************
+        System.out.println("Nueva Ciudad            [1]");
+        System.out.println("Busqueda del Ciudad     [2]");
+        op = sc.nextInt();
+        sc.nextLine();
+        switch (op) {
+            case 1:
+                objCity.main(args);
+                break;
+            case 2:
+                objCityBus.main(args);
+                break;
+        }
+       
         
         System.out.println("Ingrese el nombre del edificio: ");
         nomE = sc.nextLine();
         System.out.println("Ingrese la ubicacion del edificio: ");
         ubi = sc.nextLine();
+       
         
-        //se podria poner un if...
         System.out.println("CONSTRUCTORA");
-//      if( 0 = 0) {
-            String nomCons;
-            String idE;
-            System.out.println("*****Ingrese los datos del/la Constructor*****");
-            System.out.println("Ingrese el nombre: ");
-            nomCons = sc.nextLine();
-            System.out.println("Ingrese el id de la empresa: ");
-            idE = sc.nextLine();
-            Constructora construc = new Constructora(nomC, idE);
-            cons.establecerRegistroConstructora(construc);
-            cons.establecerSalida();
-            e.cerrarArchivo();
-            LecturaConst lcons = new LecturaConst(nombreArchivoCo);
-            lcons.establecerConstruct();
+        System.out.println("Nuevo/a constructor/ra           [1]");
+        System.out.println("Busqueda del/la constructor/ra   [2]");
+        op = sc.nextInt();
+        sc.nextLine();
+        switch (op) {
+            case 1:
+                objCons.main(args);
+                break;
+            case 2:
+                objConsBus.main(args);
+                break;
+        }
 //      }
         
-        Departamento depatament = new Departamento(p0, mXc, num, ali, b, c, 
-                nomE, ubi,construc);
+        Departamento depatament = new Departamento( mXc, num, ali, nomE, ubi);
         
-        e.establecerRegistroDepartamento(depatament);
-        e.establecerSalida();
+        depatament.obtenerCostoTotal2();
         
-        LecturaDepa ld = new LecturaDepa(nombreArchivoD);
-        ld.establecerDepar();
+        es.establecerRegistroDepartamento(depatament);
+        es.establecerSalida();
         
-        System.out.println(ld);
+        le.establecerDepar();
+        //falta especificar
+        System.out.println(le);
         
     }
 }

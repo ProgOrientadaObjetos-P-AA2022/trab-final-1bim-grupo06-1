@@ -9,28 +9,27 @@ package paqueteGuardadoCasa;
  * @author maisc
  */
 
-import paqueteGuardadoBarrio.*;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import paquete03.Barrio;
+import paquete06.Casa;
 
 public class EscrituraCasa {
 
     private String noArchivo;
     private ObjectOutputStream salida; 
-    private Barrio registroBarrio;
-    private ArrayList<Barrio> listaBarrio;
+    private Casa registroCasa;
+    private ArrayList<Casa> listaCasa;
 
     public EscrituraCasa(String c) {
         noArchivo = c;
-        establecerListaBarrio(); 
+        establecerListaCasa(); 
         try{
             salida = new ObjectOutputStream(new FileOutputStream(noArchivo));
-            if (obtenerListaBarrio().size() > 0) {
-                for (int i = 0; i < obtenerListaBarrio().size(); i++) {
-                    establecerRegistroBarrio(obtenerListaBarrio().
+            if (obtenerListaCasa().size() > 0) {
+                for (int i = 0; i < obtenerListaCasa().size(); i++) {
+                    establecerRegistroCasa(obtenerListaCasa().
                             get(i));
                     establecerSalida();
                 }
@@ -43,28 +42,28 @@ public class EscrituraCasa {
     public void establecerNoArchivo(String c){
         noArchivo = c;
     }
-    public void establecerRegistroBarrio(Barrio c) {
-        registroBarrio = c;
+    public void establecerRegistroCasa(Casa c) {
+        registroCasa = c;
     }
     public void establecerSalida() {
         try {
-            salida.writeObject(registroBarrio);
+            salida.writeObject(registroCasa);
         } catch (IOException ex) {
             System.err.println("Error al escribir en el archivo.");
         }
     }
-    public void establecerListaBarrio() {
+    public void establecerListaCasa() {
         LecturaCasa le =  new LecturaCasa(obtenerNoArchivo());
-        le.establecerBarrio();
-        listaBarrio = le.obtenerBarrio();
+        le.establecerCasa();
+        listaCasa = le.obtenerCasa();
     }
 
     
     public String obtenerNoArchivo(){
         return noArchivo;
     }
-    public ArrayList<Barrio> obtenerListaBarrio() {
-        return listaBarrio;
+    public ArrayList<Casa> obtenerListaCasa() {
+        return listaCasa;
     }
     public ObjectOutputStream obtenerSalida(){
         return salida;

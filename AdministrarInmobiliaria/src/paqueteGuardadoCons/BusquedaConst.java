@@ -2,15 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package paquedeGuardadoCons;
+package paqueteGuardadoCons;
 
-import paqueteGuardadoBarrio.*;
 import java.util.Scanner;
-import paquete03.Barrio;
-
-
-
-
+import paquete05.Constructora;
 /**
  *
  * @author maisc
@@ -20,7 +15,7 @@ public class BusquedaConst {
     public static void main(String[] args) {
         String nombreArchivoC = "data/constructora.data";
         String id;
-        Barrio cons_buscar;
+        Constructora cons_buscar;
         
         Scanner sc = new Scanner(System.in);
         
@@ -28,11 +23,11 @@ public class BusquedaConst {
         System.out.println("Ingrese id de la empresa: ");
         id = sc.nextLine();
         
-        LecturaBarrio lectura = new LecturaBarrio(nombreArchivoC);
+        LecturaConst lectura = new LecturaConst(nombreArchivoC);
         
         lectura.establecerIdent(id);
-        lectura.establecerBarrio();
-        cons_buscar = lectura.obtenerBarrioBusqueda();
+        lectura.establecerConstructoraBu();
+        cons_buscar = lectura.obtenerConstructoraBu();
 
         if (cons_buscar != null) {
             System.out.println("------ENCONTRADO------");

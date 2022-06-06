@@ -18,6 +18,7 @@ import paquete05.Constructora;
 
 public class Departamento implements Serializable{
     private Propietario prop2;//Instanciamos una variable de tipo propietario
+    private Propietario[] prop;//Instanciamos una variable de tipo propietario
     private double precioXCuadra2;
     private double metrosCua2;
     private double valorAlicuotaMes;
@@ -30,24 +31,21 @@ public class Departamento implements Serializable{
     
     //Constructores..
 
-    public Departamento(Propietario p, double pre, double me, double v,
-            Barrio bar, Ciudad ci, String n, String u, 
-            Constructora con) {
-        prop2 = p;
+    public Departamento(double pre, double me, double v, String n, String u) {
         precioXCuadra2 = pre;
         metrosCua2 = me;
         valorAlicuotaMes = v;
-        barr2 = bar;
-        ciud2 = ci;
         nomEdificio = n;
         ubiEdificio = u;
-        construc2 = con;
     }
     
     
     //Los establecer de los atributos
     public void establecerPropietario(Propietario p){
         prop2 = p;
+    }
+    public void establecerPropietario000(Propietario [] p){
+        prop = p;
     }
     public void establecerPrecioXCuadra2(double c){
         precioXCuadra2 = c;
@@ -82,6 +80,9 @@ public class Departamento implements Serializable{
     public Propietario obtenerProp2(){
        return prop2; 
     }
+    public Propietario [] obtenerProp000(){
+       return prop; 
+    }
     public double obtenerPrecioXCuadra2(){
         return precioXCuadra2;
     }
@@ -110,26 +111,5 @@ public class Departamento implements Serializable{
         return construc2;
     }
     //Metodo toString
-
-    @Override
-    public String toString() {
-        String ca = "DEPARTAMENTOS\n";
-//        for (int i = 0; i < obtenerDepartamento().size(); i++) {
-//            Departamento c = obtenerDepartamento().get(i);
-//            ca = String.format("%s(%d) Propietario: \t\t[%s]\n"
-//                    + "Precio por metro cuadrado:  %s\n"
-//                    + "Numero de metros cuadrados: %s\n"
-//                    ,ca//tengo que especificar que se mostrara!!!
-//                    ,i + 1
-//                    ,c.obtenerProp2().toString()
-//                    ,c.obtenerPrecioXCuadra2()
-//                    ,
-//            );
-//        }
-
-        
-
-        return ca;
-    }
     
 }

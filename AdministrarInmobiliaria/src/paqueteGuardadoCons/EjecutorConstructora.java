@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package paquedeGuardadoCons;
+package paqueteGuardadoCons;
 
 import java.util.Scanner;
 import paquete05.Constructora;

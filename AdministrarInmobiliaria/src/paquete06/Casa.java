@@ -27,6 +27,12 @@ public class Casa implements Serializable{
     private Constructora construc;//Instanciamos una variable de tipo constructora
     
     //Constructores...
+
+    public Casa(double pXC, double m, int n) {
+        precioXCuadra = pXC;
+        metrosCua = m;
+        numCuartos = n;
+    }
     
     
     //Los establecer de los atributos
@@ -40,7 +46,7 @@ public class Casa implements Serializable{
         metrosCua = c;
     }
     public void calcularCostoTotal(){
-        costoTotal =  metrosCua *precioXCuadra;
+        costoTotal =  obtenerMetrosCua() *obtenerprecioXCuadra();
     }
     public void establecerBarr(Barrio c){
         barr = c;
@@ -80,11 +86,5 @@ public class Casa implements Serializable{
     public Constructora obtenerConstruc(){
         return construc;
     }
-    
-    //Metodo toString
-    @Override
-    public String toString() {
-        String c = "CASA......";
-        return c;
-    }
+
 }

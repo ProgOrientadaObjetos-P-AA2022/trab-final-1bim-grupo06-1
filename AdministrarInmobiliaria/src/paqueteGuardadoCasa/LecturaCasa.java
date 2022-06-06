@@ -9,22 +9,19 @@ package paqueteGuardadoCasa;
  * @author maisc
  **/
 
-import paqueteGuardadoBarrio.*;
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
-import paquete03.Barrio;
+import paquete06.Casa;
 
 public class LecturaCasa {
 
     private ObjectInputStream entrada;
-    private ArrayList<Barrio> barrio;
+    private ArrayList<Casa> casa;
     private String noArchivo;
-    private String ident;
-    private Barrio barrioBusqueda;
 
     //Constructor
     public LecturaCasa(String n) {
@@ -45,39 +42,14 @@ public class LecturaCasa {
     public void establecerNoArchivo(String n) {
         noArchivo = n;
     }
-    public void establecerBarrio() {
-        barrio = new ArrayList<>();
+    public void establecerCasa() {
+        casa = new ArrayList<>();
         File f = new File(obtenerNoArchivo());
         if (f.exists()) {
             while (true) {
                 try {
-                    Barrio reg = (Barrio) entrada.readObject();
-                    barrio.add(reg);
-                } catch (EOFException endOfFileException) {
-                    return;
-                } catch (IOException ex) {
-                    System.err.println("Error al leer el archivo: " + ex);
-                } catch (ClassNotFoundException ex) {
-                    System.err.println("No se pudo crear el objeto: " + ex);
-                } catch (Exception ex) {
-                    System.err.println("No hay datos en el archivo: " + ex);
-                }
-            }
-        }
-    }
-    public void establecerIdent(String n) {
-        ident = n;
-    }
-    public void establecerBarrioBusqueda() {
-        File f = new File(obtenerNoArchivo());
-        if (f.exists()) {
-            while (true) {
-                try {
-                    Barrio reg = (Barrio) entrada.readObject();
-                    if(reg.obtenerNomBarrio().equals(ident)){
-                        barrioBusqueda = reg;
-                        break;
-                    }
+                    Casa reg = (Casa) entrada.readObject();
+                    casa.add(reg);
                 } catch (EOFException endOfFileException) {
                     return;
                 } catch (IOException ex) {
@@ -92,30 +64,36 @@ public class LecturaCasa {
     }
     
     //Los obtener de los atributos
-    public ArrayList<Barrio> obtenerBarrio() {
-        return barrio;
+    public ArrayList<Casa> obtenerCasa() {
+        return casa;
     }
     public String obtenerNoArchivo() {
         return noArchivo;
-    }
-    public String obtenerIdent() {
-        return ident;
-    }
-    public Barrio obtenerBarrioBusqueda() {
-        return barrioBusqueda;
     }
 
     //Metodo toString
     @Override
     public String toString() {
-        String ca = "Lista de Barrios\n";
-        for (int i = 0; i < obtenerBarrio().size(); i++) {
-            Barrio c = obtenerBarrio().get(i);
-            ca = String.format("%s(%d) %s - %s\n"
+        String ca = "Lista de Casa\n";
+        
+        for (int i = 0; i < obtenerCasa().size(); i++) {
+            Casa c = obtenerCasa().get(i);
+            ca = String.format("%s(%d) Propietario: \n\t\t[%s-%s-%s]\n"
+                    + "Barrio: \n\t\t[%s-%s]\nCiudad: \n\t\t[%s-%s]\n"
+                    + "Constructora: \n\t\t[%s-%s]\n\n"
+                    + "Costo total de la propiedad es: %.2f\n"
                     ,ca
                     ,i + 1
-                    ,c.obtenerNomBarrio()
-                    ,c.obtenerRefe()
+                    ,c.obtenerProp().obtenerNombre()
+                    ,c.obtenerProp().obtenerApellido()
+                    ,c.obtenerProp().obtenerIdentificacion()
+                    ,c.obtenerBarr().obtenerNomBarrio()
+                    ,c.obtenerBarr().obtenerRefe()
+                    ,c.obtenerCiud().obtenerNombCiudad()
+                    ,c.obtenerCiud().obtenerProvincia()
+                    ,c.obtenerConstruc().obtenerNomCons()
+                    ,c.obtenerConstruc().obtenerIdEmp()
+                    ,c.obtenerCostoTotal()
             );
         }
         return ca;

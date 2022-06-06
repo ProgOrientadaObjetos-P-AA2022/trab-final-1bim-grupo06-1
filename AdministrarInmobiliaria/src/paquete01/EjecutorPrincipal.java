@@ -7,8 +7,8 @@ package paquete01;
 
 import java.util.Scanner;
 
-import paquedeGuardadoCons.EjecutorConstructora;
-import paquedeGuardadoCons.BusquedaConst;
+import paqueteGuardadoCons.EjecutorConstructora;
+import paqueteGuardadoCons.BusquedaConst;
 
 import paqueteGuardadoBarrio.BusquedaBarrio;
 import paqueteGuardadoBarrio.EjecutorBarrio;
@@ -17,6 +17,8 @@ import paqueteGuardadoCity.BusquedaCity;
 import paqueteGuardadoCity.EjecutorCity;
 
 import paqueteGuardadoDepartamento.EjecutorDepartamento;
+
+import paqueteGuardadoCasa.EjecutorCasa;
 
 import paqueteGuardadoProp.BusquedaProp;
 import paqueteGuardadoProp.EjecutorProp;
@@ -39,6 +41,9 @@ public class EjecutorPrincipal {
         EjecutorBarrio objBarrio = new EjecutorBarrio();
         EjecutorConstructora objCons = new EjecutorConstructora();
         EjecutorDepartamento objDeparta = new EjecutorDepartamento();
+        EjecutorCasa objCasa = new EjecutorCasa();
+        
+        ImprimirDatos objImp = new ImprimirDatos();
         
         //Buscadores de su propia clase
         BusquedaProp objPropBus = new BusquedaProp();
@@ -50,12 +55,16 @@ public class EjecutorPrincipal {
             try {
                 System.out.println("------------------------------");
                 System.out.printf("Elegir la opcion que decea realizar: \n\n"
-                        + "Ingresar Propietario   [1]\n"
-                        + "Ingresar Ciudad        [2]\n"
-                        + "Ingresar Barrio        [3]\n"
-                        + "Ingresar Constructora  [4]\n\n"
-                        + "Ingresar una Casa         [5]\n"
-                        + "Ingresar un departamento  [6]\n\n"
+                        + "Ingresar Propietario              [1]\n"
+                        + "Ingresar Ciudad                   [2]\n"
+                        + "Ingresar Barrio                   [3]\n"
+                        + "Ingresar Constructora             [4]\n"
+                        + "---------------------\n"
+                        + "Ingresar una Casa                 [5]\n"
+                        + "Ingresar un departamento          [6]\n"
+                        + "------------------------\n"
+                        + "Imprimir Datos                    [7]\n"
+                        + "------------------------\n"
                         + "Para salir de la aplicaicon pulse [0]\n");
                 op = sc.nextInt();
                 sc.nextLine();
@@ -63,7 +72,7 @@ public class EjecutorPrincipal {
                 switch(op){
                     case 1:      
                         System.out.println("******************");
-                        System.out.println("nuevo propietario     [1]");
+                        System.out.println("Nuevo propietario     [1]");
                         System.out.println("Buscar propietario    [2]");
                         System.out.println("Atras                 [0]");
                         opc = sc.nextInt();
@@ -133,25 +142,16 @@ public class EjecutorPrincipal {
                                 break;
                         }
                         break;
-                  case 5:
+                  case 5://No se como arreglarlo
                         System.out.println("******MENU CASA******");
+                        objCasa.main(args);
                         break;
-                  case 6: 
+                  case 6://No se como arreglarlo 
                         System.out.println("******MENU DEPARTAMENTO******");
-                        System.out.println("Nuevo Departamento      [1]");
-                        System.out.println("Buscar Departamento     [2]");
-                        opc = sc.nextInt();
-                        sc.nextLine();
-                        switch (opc) {
-                            case 1:
-                                objDeparta.main(args);                       
-                                break;
-                            case 2:
-                                objDepartaBus.main(args);                       
-                                break;
-                            case 0:
-                                break;
-                        }
+                        objDeparta.main(args);  
+                        break;
+                  case 7:
+                        objImp.main(args);
                         break;
                 }
                 System.out.println("");
